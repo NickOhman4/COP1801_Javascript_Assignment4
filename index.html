@@ -1,0 +1,58 @@
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Please enter your total</p>
+    <input id='total' placeholder='20'></input>
+    <p>Please enter the quality of service, great, ok or poor</p>
+    <input id='service' placeholder='great'></input>
+    <button onclick=getTip()>Submit</button>
+    <p id='amount'></p>
+    <script>
+        function getTip() {
+            total = document.getElementById('total').value
+            service = document.getElementById('service').value
+            x = Number(total)
+            validService()
+        }
+        function validService() {
+            if (service == 'great' || service == 'ok' || service == 'poor') {
+                if (service == 'great') {
+                    service = .2;
+                    y = Number(service)
+                    validAmount()
+                } else if (service == 'ok') {
+                    service = .15;
+                    y = Number(service)
+                    validAmount()
+                } else {
+                    service = .1;
+                    y = Number(service)
+                    validAmount()
+                }
+            } else {
+                alert("Please refresh and enter in a valid input of great")
+            }
+        }
+        function validAmount() {
+            if (x >= 5 && x <= 500) {
+                totalAmount()
+            } else {
+                alert("Please entere an amount of $5-$500")
+            }
+        }
+        function totalAmount() {
+            tip = y * x;
+            totalWithTip = Number(x) + Number(tip);
+            fixedTotal = totalWithTip.toFixed(2)
+            document.getElementById('amount').innerHTML = `Your tip will be $${fixedTotal}, have a great day!!`;
+        }
+
+    </script>
+
+</body>
+
+</html>
